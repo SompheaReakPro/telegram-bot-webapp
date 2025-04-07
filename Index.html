@@ -2,44 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>POS Web App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Showcase</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    button { padding: 10px; font-size: 18px; margin-top: 10px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f7f7f7;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 20px 0 10px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #0088cc;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-<h2>Simple POS System</h2>
-
-<div id="products">
-  <p><strong>Products:</strong></p>
-  <label><input type="checkbox" value="10" /> Coffee - $10</label><br>
-  <label><input type="checkbox" value="5" /> Donut - $5</label><br>
-  <label><input type="checkbox" value="15" /> Sandwich - $15</label><br>
+<div class="container">
+  <img src="https://via.placeholder.com/350x200.png?text=Your+Product" alt="Product">
+  <h1>Amazing Product</h1>
+  <p>Only $49.99</p>
+  <button onclick="Telegram.WebApp.close()">Close</button>
 </div>
 
-<h3>Total: $<span id="total">0</span></h3>
-
-<button onclick="checkout()">Checkout</button>
-
 <script>
-  function checkout() {
-    const checkboxes = document.querySelectorAll('#products input[type="checkbox"]:checked');
-    let total = 0;
-    checkboxes.forEach(cb => {
-      total += parseFloat(cb.value);
-    });
-
-    document.getElementById('total').textContent = total;
-
-    if (window.Telegram.WebApp) {
-      window.Telegram.WebApp.sendData(JSON.stringify({ total: total }));
-      window.Telegram.WebApp.close();
-    }
-  }
+  Telegram.WebApp.ready();
 </script>
 
 </body>
